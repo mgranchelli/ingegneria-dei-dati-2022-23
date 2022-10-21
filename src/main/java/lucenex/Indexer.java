@@ -20,7 +20,6 @@ import java.util.Map;
 import org.apache.lucene.analysis.Analyzer;
 import org.apache.lucene.analysis.CharArraySet;
 import org.apache.lucene.analysis.TokenStream;
-import org.apache.lucene.analysis.core.StopAnalyzer;
 import org.apache.lucene.analysis.en.EnglishAnalyzer;
 import org.apache.lucene.analysis.miscellaneous.PerFieldAnalyzerWrapper;
 import org.apache.lucene.analysis.standard.StandardAnalyzer;
@@ -43,9 +42,8 @@ import org.junit.Test;
 public class Indexer {
 	
 	private static CharArraySet enStopSet = EnglishAnalyzer.ENGLISH_STOP_WORDS_SET;
-	private static CharArraySet stopWords = new CharArraySet(Arrays.asList("txt"), true);
 	public static final StandardAnalyzer analyzerContenuto = new StandardAnalyzer(enStopSet);
-	public static final StopAnalyzer analyzerNome = new StopAnalyzer(stopWords);
+	public static final NomeAnalyzer analyzerNome = new NomeAnalyzer();
 	public static final String pathIndex = "target/idx";
 	
 	
@@ -58,8 +56,8 @@ public class Indexer {
 		Path docDir = Paths.get("inputFiles");
 		Analyzer defaultAnalyzer = new StandardAnalyzer();
 		Map<String, Analyzer> perFieldAnalyzers = new HashMap<>();
-		perFieldAnalyzers.put("contenuto", new StandardAnalyzer(enStopSet));
-		perFieldAnalyzers.put("nome", new StopAnalyzer(stopWords));
+		perFieldAnalyzers.put("contenuto", analyzerContenuto);
+		perFieldAnalyzers.put("nome", analyzerNome);
 
 		Analyzer analyzer = new PerFieldAnalyzerWrapper(defaultAnalyzer, perFieldAnalyzers);
 		IndexWriterConfig config = new IndexWriterConfig(analyzer);
@@ -103,6 +101,8 @@ public class Indexer {
 		}
 	}
 	
+	
+	
 	/*************************** TEST ***************************/
 	
 	// Analyzer generated tokens 
@@ -119,13 +119,13 @@ public class Indexer {
 	
 	@Test
 	public void testGeneratedTokens() throws Exception {
-		CharArraySet stopWords = new CharArraySet(Arrays.asList("txt"), true);
-		List<String> result = analyze("Ant-Man.And.The.Wasp.txt", new StopAnalyzer(stopWords));
-        List<String> test = Arrays.asList("ant", "man", "and", "the", "wasp");
+
+		List<String> result = analyze("Ant-Man.And.The.Wasp.3.txt", new NomeAnalyzer());
+        List<String> test = Arrays.asList("ant", "man", "and", "the", "wasp", "3");
         
         assertEquals(result, test);
 	}
-	
+
 	
 	@Test
 	public void testIndexStatistics() throws Exception {
