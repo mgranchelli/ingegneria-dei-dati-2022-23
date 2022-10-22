@@ -32,7 +32,7 @@ public class Main {
 				}
 			}
 			else {
-				System.out.println("Query must start with keyword \"nome\" or \"contenuto!\" followed by a sequence of terms!\n");
+				System.out.println("Query must start with keyword \"nome\" or \"contenuto\" followed by a sequence of terms!\n");
 				System.out.println("Type close to exit or insert query: ");
 			}
 			str = br.readLine();

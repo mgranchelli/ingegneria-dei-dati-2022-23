@@ -46,13 +46,12 @@ public class Indexer {
 	public static final NomeAnalyzer analyzerNome = new NomeAnalyzer();
 	public static final String pathIndex = "target/idx";
 	
-	
 	public void indexDocs(Directory directory, Codec codec) throws IOException {
 		long startTime = System.currentTimeMillis();
 		long endTime;
 		
 		System.out.println("Indexing...");
-		
+
 		Path docDir = Paths.get("inputFiles");
 		Analyzer defaultAnalyzer = new StandardAnalyzer();
 		Map<String, Analyzer> perFieldAnalyzers = new HashMap<>();
@@ -75,7 +74,15 @@ public class Indexer {
 				@Override
 				public FileVisitResult visitFile(Path file, BasicFileAttributes attrs) throws IOException {
 					// Index this file
-					indexDoc(writer, file);
+					int l = file.getFileName().toString().lastIndexOf('.');
+					if (l > 0) {
+						if (file.getFileName().toString().substring(l).equals(".txt")) {
+							indexDoc(writer, file);
+						}
+						else {
+							System.out.println("File: " + file.getFileName().toString() + " not .txt");
+						}
+					}
 					return FileVisitResult.CONTINUE;
 				}
 			});
@@ -86,7 +93,7 @@ public class Indexer {
 
 		writer.commit();
 		writer.close();
-		
+
 		endTime = System.currentTimeMillis();
 		System.out.println("Time to indexing: " + (endTime - startTime) / 1000F + " seconds");
 	}
@@ -100,33 +107,30 @@ public class Indexer {
 			writer.addDocument(doc);
 		}
 	}
-	
-	
-	
+
 	/*************************** TEST ***************************/
-	
-	// Analyzer generated tokens 
+
+	// Analyzer generated tokens
 	private List<String> analyze(String text, Analyzer analyzer) throws IOException {
-        List<String> result = new ArrayList<String>();
-        TokenStream tokenStream = analyzer.tokenStream("test", text);
-        CharTermAttribute attr = tokenStream.addAttribute(CharTermAttribute.class);
-        tokenStream.reset();
-        while (tokenStream.incrementToken()) {
-            result.add(attr.toString());
-        }
-        return result;
+		List<String> result = new ArrayList<String>();
+		TokenStream tokenStream = analyzer.tokenStream("test", text);
+		CharTermAttribute attr = tokenStream.addAttribute(CharTermAttribute.class);
+		tokenStream.reset();
+		while (tokenStream.incrementToken()) {
+			result.add(attr.toString());
+		}
+		return result;
 	}
-	
+
 	@Test
 	public void testGeneratedTokens() throws Exception {
 
 		List<String> result = analyze("Ant-Man.And.The.Wasp.3.txt", new NomeAnalyzer());
-        List<String> test = Arrays.asList("ant", "man", "and", "the", "wasp", "3");
-        
-        assertEquals(result, test);
+		List<String> test = Arrays.asList("ant", "man", "and", "the", "wasp", "3");
+
+		assertEquals(result, test);
 	}
 
-	
 	@Test
 	public void testIndexStatistics() throws Exception {
 		Path path = Paths.get(pathIndex);
