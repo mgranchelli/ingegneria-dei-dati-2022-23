@@ -13,7 +13,7 @@ public class Cell {
     private String isHeader;
     private String type;
     @JsonProperty("Coordinates")
-    private Coordinate Coordinates;
+    private Coordinate Coordinates; // Coordinate della cella nella tabella
     private String cleanedText;
     @JsonProperty("Rows")
     private Row[] Rows;

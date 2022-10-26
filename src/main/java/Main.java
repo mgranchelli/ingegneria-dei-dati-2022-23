@@ -1,40 +1,52 @@
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 
-public class Main {
-	
-	public static void main(String[] args) throws Exception {
+import statistics.Statistics;
 
-		System.out.println("Type close to exit or insert query: ");
+public class Main {
+
+	public static void main(String[] args) throws Exception {
+		
+		menu();
 
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 
 		// Reading data using readLine
 		String str = br.readLine();
 
-		while (!str.equals("close")) {
+		while (!str.equals("0")) {
 
-			String[] result = str.split(" ", 2);
-			String key = result[0];
-			
-			if ((result.length > 1) & (key.equals("nome") | key.equals("contenuto"))) {
-				String textQuery = result[1];
-				if (!textQuery.strip().equals("")) {
-					
-					System.out.println("\nType close to exit or insert query: ");
-				}
-				else {
-					System.out.println("Invalid term sequence!");
-					System.out.println("Type close to exit or insert query: ");
-				}
+			if (str.equals("1")) {
+				Statistics statistics = new Statistics();
+				statistics.getStatistics();
+				menu();
+
+			} else if (str.equals("2")) {
+				
+				menu();
+
+			} else if (str.equals("3")) {
+				
+				menu();
 			}
+
 			else {
-				System.out.println("Query must start with keyword \"nome\" or \"contenuto\" followed by a sequence of terms!\n");
-				System.out.println("Type close to exit or insert query: ");
+				System.out.println("\nInvalid choice!");
+				menu();
 			}
 			str = br.readLine();
 		}
 		System.out.println("Closing...");
+	}
+	
+	private static void menu() {
+		System.out.println("\nChoose from these choices");
+		System.out.println("-------------------------");
+		System.out.println("0 - Quit");
+		System.out.println("1 - Statistics");
+		System.out.println("2 - ...");
+		System.out.println("3 - ...");
+		System.out.println("-------------------------");
 	}
 
 }
