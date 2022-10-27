@@ -3,16 +3,11 @@ package statistics;
 import java.io.File;
 import java.io.IOException;
 import java.util.HashMap;
-import java.util.LinkedHashMap;
-import java.util.LinkedList;
-import java.util.List;
 import java.util.Map;
-import java.util.Map.Entry;
-import java.util.stream.Collectors;
 
-import org.jfree.chart.ChartUtils;
 import org.jfree.chart.ChartFactory;
 import org.jfree.chart.ChartPanel;
+import org.jfree.chart.ChartUtils;
 import org.jfree.chart.JFreeChart;
 import org.jfree.chart.plot.PlotOrientation;
 import org.jfree.chart.ui.ApplicationFrame;
@@ -83,13 +78,14 @@ public class Charts extends ApplicationFrame {
 	private CategoryDataset createBarChartDataset(HashMap<Integer, Integer> map, String type) {
 
 		final DefaultCategoryDataset dataset = new DefaultCategoryDataset();
-		Map<Integer, Integer> sortMap = sortByValue(map, false);
+		Map<Integer, Integer> sortedMap = SortMapByValue.sortByValue(map, false);
 		int count = 0;
-        for (Map.Entry<Integer, Integer> entry : sortMap.entrySet()) {
-            if(count > 30) {
+        for (Map.Entry<Integer, Integer> entry : sortedMap.entrySet()) {
+            if(count > 10) {
                 break;
             }
             dataset.addValue(entry.getValue(), type, Integer.toString(entry.getKey()));
+            count++;
         }
         
 		return dataset;
@@ -123,20 +119,4 @@ public class Charts extends ApplicationFrame {
 			e.printStackTrace();
 		}
 	}
-	
-	// order= Desc->false, Asc->true
-	private static Map<Integer, Integer> sortByValue(Map<Integer, Integer> unsortMap, final boolean order)
-    {
-        List<Entry<Integer, Integer>> list = new LinkedList<>(unsortMap.entrySet());
-
-        // Sorting the list based on values
-        list.sort((o1, o2) -> order ? o1.getValue().compareTo(o2.getValue()) == 0
-                ? o1.getKey().compareTo(o2.getKey())
-                : o1.getValue().compareTo(o2.getValue()) : o2.getValue().compareTo(o1.getValue()) == 0
-                ? o2.getKey().compareTo(o1.getKey())
-                : o2.getValue().compareTo(o1.getValue()));
-        return list.stream().collect(Collectors.toMap(Entry::getKey, Entry::getValue, (a, b) -> b, LinkedHashMap::new));
-
-    }
-
 }

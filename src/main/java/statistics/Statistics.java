@@ -13,45 +13,63 @@ import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.MappingIterator;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
+import lucene.GlobalVariables;
 import models.Cell;
 import models.Table;
 
 public class Statistics {
 
-	private String jsonFilePath = "./inputFile/tablesTest.json";
-	private int tablesNumber = 0;
-	private int columns = 0;
-	private int rows = 0;
-	private int emptyCells = 0;
-	private HashMap<Integer, Integer> rowsDistribution = new HashMap<Integer, Integer>();
-	private HashMap<Integer, Integer> columnsDistribution = new HashMap<Integer, Integer>();
-	private HashMap<String, Integer> typeCellDistribution = new HashMap<String, Integer>();
-	private HashMap<Integer, Set<String>> mapIntValues = new HashMap<>();
-	private HashMap<Integer, Integer> distinctColumnsValuesDistribution = new HashMap<>();
+	private GlobalVariables gv;
+	private int tablesNumber;
+	private int columns;
+	private int rows;
+	private int emptyCells;
+	private HashMap<Integer, Integer> rowsDistribution;
+	private HashMap<Integer, Integer> columnsDistribution;
+	private HashMap<String, Integer> typeCellDistribution;
+	private HashMap<Integer, Set<String>> mapIntValues;
+	private HashMap<Integer, Integer> distinctColumnsValuesDistribution;
+	
+	public Statistics() {
+		this.gv = new GlobalVariables();
+		this.tablesNumber = 0;
+		this.columns = 0;
+		this.rows = 0;
+		this.emptyCells = 0;
+		this.rowsDistribution = new HashMap<Integer, Integer>();
+		this.columnsDistribution = new HashMap<Integer, Integer>();
+		this.typeCellDistribution = new HashMap<String, Integer>();
+		this.mapIntValues = new HashMap<>();
+		this.distinctColumnsValuesDistribution = new HashMap<>();
+		
+	}
 	
 
 	public void getStatistics() {
 		
 		long start = System.currentTimeMillis();
-		parse(this.jsonFilePath);
-
+		System.out.println("\nGenerating statistics...");
+		
+		parse(this.gv.getPathInputFile());
+		
+		SortMapByValue sortMap = new SortMapByValue();
+		
 		System.out.println("Tables number: " + this.tablesNumber);
 		System.out.println("Avg rows: " + this.rows / this.tablesNumber);
 		System.out.println("Avg columns: " + this.columns / this.tablesNumber);
 		System.out.println("Avg null value per table: " + this.emptyCells / this.tablesNumber);
 		System.out.println("Cell type distribution: " + this.typeCellDistribution);
-		System.out.println("Row distribution: " + this.rowsDistribution);
-		System.out.println("Columns distribution: " + this.columnsDistribution);
-		System.out.println("Distinct columns list strings: " + this.mapIntValues);
-		System.out.println("Distinct columns number values: " + this.distinctColumnsValuesDistribution);
+		System.out.println("Row distribution: " + sortMap.getSortedFirstNElement(this.rowsDistribution, 20));
+		System.out.println("Columns distribution: " + sortMap.getSortedFirstNElement(this.columnsDistribution, 20));
+		System.out.println("Distinct columns number values: " + sortMap.getSortedFirstNElement(this.distinctColumnsValuesDistribution, 20));
 
-		System.out.println("Total Time Taken : " + (System.currentTimeMillis() - start) / 1000 + " secs");
+		System.out.println("Total Time Taken: " + (System.currentTimeMillis() - start) / 1000 + " secs");
 
 	}
 	
 	public void getStatisticsAndCharts() {
 		this.getStatistics();
-		System.out.println("\nGenerate charts...");
+		System.out.println("\nGenerating charts...");
 		Charts avgRowsColsChart = new Charts("Avg rows and columns", "Avg rows and columns", rows / tablesNumber, columns / tablesNumber);
 		avgRowsColsChart.pack();
 		avgRowsColsChart.setVisible(true);
@@ -79,7 +97,7 @@ public class Statistics {
 		ObjectMapper mapper = new ObjectMapper();
 		JsonFactory jsonFactory = new JsonFactory();
 
-		try (BufferedReader br = new BufferedReader(new FileReader(this.jsonFilePath))) {
+		try (BufferedReader br = new BufferedReader(new FileReader(jsonFilePath))) {
 			MappingIterator<Table> value = mapper.readValues(jsonFactory.createParser(br), Table.class);
 
 			value.forEachRemaining((u) -> {
@@ -136,6 +154,10 @@ public class Statistics {
 						this.mapIntValues.put(c.getCoordinates().getColumn(), values);
 					}
 					values.add(c.getCleanedText());
+				}
+				
+				if (this.tablesNumber % 50000 == 0) {
+					System.out.println("...");
 				}
 
 			});
