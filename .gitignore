@@ -1,5 +1,6 @@
 target/
 inputFile/
+outputCharts/
 
 .project
 .classpath
