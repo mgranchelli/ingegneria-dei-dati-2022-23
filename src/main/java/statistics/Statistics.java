@@ -64,7 +64,7 @@ public class Statistics {
 		System.out.println("Cell type distribution: " + this.typeCellDistribution);
 		System.out.println("Row distribution (ROWS, N.TAB): " + sortMap.getSortedFirstNElement(this.rowsDistribution, 20));
 		System.out.println("Columns distribution (COLUMNS, N.TAB): " + sortMap.getSortedFirstNElement(this.columnsDistribution, 20));
-		System.out.println("Distinct columns number values (TAB, DISTINCT): " + sortMap.getSortedFirstNElement(this.distinctColumnsValuesDistribution, 20));
+		System.out.println("Distinct columns number values (COLUMNS, DISTINCT): " + sortMap.getSortedFirstNElement(this.distinctColumnsValuesDistribution, 20));
 
 		System.out.println("Total Time Taken: " + (System.currentTimeMillis() - start) / 1000 + " secs");
 
