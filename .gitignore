@@ -1,7 +1,10 @@
 target/
-inputFile/
+inputFile/*
 outputCharts/
 
 .project
 .classpath
 .settings/
+.idea/
+
+!inputFile/tables_test.json
