@@ -33,12 +33,12 @@ public class MergeList {
 		HashMap<String, List<Integer>> invertedIndex = generateInvertedIndex(inputString);
 		Map<Integer, Integer> sortedSet2count = getSortedSet2count(invertedIndex);
 
-		System.out.println("Total Time Taken : " + (System.currentTimeMillis() - start) / 1000 + " secs");
+		System.out.println("Total Time Taken : " + (System.currentTimeMillis() - start) / 1000 + " secs\n");
 
 		for (Map.Entry<Integer, Integer> entry : sortedSet2count.entrySet()) {
 			if (entry.getValue() >= K) {
 				System.out.println("Table (document) number: " + entry.getKey().toString() + 
-						" K: " + entry.getValue().toString() + "\n");
+						" K: " + entry.getValue().toString());
 			} else {
 				break;
 			}
