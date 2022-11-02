@@ -85,6 +85,7 @@ public class Main {
 			str = br.readLine();
 		}
 		System.out.println("Closing...");
+		System.exit(0);
 	}
 
 	private static void menu() {
