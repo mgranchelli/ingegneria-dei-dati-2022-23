@@ -23,7 +23,7 @@ public class IndexLoader {
 		Path path = Paths.get(new GlobalVariables().getPathIndex());
 		IndexReader reader = DirectoryReader.open(FSDirectory.open(path));
 		IndexSearcher searcher = new IndexSearcher(reader);
-		searcher.search(new TermQuery(new Term("tableContent", "test")), 1000000);
+		searcher.search(new TermQuery(new Term("tableContent", "test")), 20000000);
 		return searcher;
 	}
 

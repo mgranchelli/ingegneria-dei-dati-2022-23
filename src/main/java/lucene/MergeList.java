@@ -33,7 +33,7 @@ public class MergeList {
 		HashMap<String, List<Integer>> invertedIndex = generateInvertedIndex(inputString);
 		Map<Integer, Integer> sortedSet2count = getSortedSet2count(invertedIndex);
 
-		System.out.println("Total Time Taken : " + (System.currentTimeMillis() - start) / 1000 + " secs\n");
+		System.out.println("Total Time Taken : " + (System.currentTimeMillis() - start) + " ms\n");
 
 		for (Map.Entry<Integer, Integer> entry : sortedSet2count.entrySet()) {
 			if (entry.getValue() >= K) {
@@ -62,14 +62,14 @@ public class MergeList {
 	public HashMap<String, List<Integer>> generateInvertedIndex(String inputString) throws IOException {
 		Set<String> tokens = tokenizeString(new TableAnalyzer(), inputString);
 
-		// Per ogni token genero una mappa Token -> Lista<Documenti>
+
 		HashMap<String, List<Integer>> map = new HashMap<>();
 		System.out.println("\nTokens: " + tokens + "\n");
 
 		for (String token : tokens) {
 			System.out.println("Executing token: " + token);
 
-			TopDocs hits = this.searcher.search(new TermQuery(new Term("tableContent", token)), 10000000);
+			TopDocs hits = this.searcher.search(new TermQuery(new Term("tableContent", token)), 20000000);
 			System.out.println("Number of table found for token (\"" + token + "\"): " + hits.scoreDocs.length);
 
 			List<Integer> docList = new ArrayList<>();
