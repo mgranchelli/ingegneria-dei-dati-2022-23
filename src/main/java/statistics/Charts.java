@@ -9,6 +9,8 @@ import org.jfree.chart.ChartFactory;
 import org.jfree.chart.ChartPanel;
 import org.jfree.chart.ChartUtils;
 import org.jfree.chart.JFreeChart;
+import org.jfree.chart.labels.StandardPieSectionLabelGenerator;
+import org.jfree.chart.plot.PiePlot;
 import org.jfree.chart.plot.PlotOrientation;
 import org.jfree.chart.ui.ApplicationFrame;
 import org.jfree.data.category.CategoryDataset;
@@ -23,11 +25,14 @@ public class Charts extends ApplicationFrame {
 	// Pie chart - type cells distribution
 	public Charts(String applicationTitle, String chartTitle, HashMap<String, Integer> map) {
 		super(applicationTitle);
+		// Create the custom label generator
 		JFreeChart pieChart = ChartFactory.createPieChart(
 				chartTitle,
 				createPieDataset(map), 
 				true,
 				true, false);
+		PiePlot<?> plot = (PiePlot<?>) pieChart.getPlot();
+	    plot.setLabelGenerator(new StandardPieSectionLabelGenerator("{0} {2}"));
 		
 		saveChart(pieChart, chartTitle);
 

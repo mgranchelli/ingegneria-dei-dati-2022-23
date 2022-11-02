@@ -24,6 +24,7 @@ public class Statistics {
 	private int columns;
 	private int rows;
 	private int emptyCells;
+	private int totalCells;
 	private HashMap<Integer, Integer> rowsDistribution;
 	private HashMap<Integer, Integer> columnsDistribution;
 	private HashMap<String, Integer> typeCellDistribution;
@@ -36,6 +37,7 @@ public class Statistics {
 		this.columns = 0;
 		this.rows = 0;
 		this.emptyCells = 0;
+		this.totalCells = 0;
 		this.rowsDistribution = new HashMap<Integer, Integer>();
 		this.columnsDistribution = new HashMap<Integer, Integer>();
 		this.typeCellDistribution = new HashMap<String, Integer>();
@@ -58,10 +60,11 @@ public class Statistics {
 		System.out.println("Avg rows: " + this.rows / this.tablesNumber);
 		System.out.println("Avg columns: " + this.columns / this.tablesNumber);
 		System.out.println("Avg null value per table: " + this.emptyCells / this.tablesNumber);
+		System.out.println("Total cells: " + this.totalCells);
 		System.out.println("Cell type distribution: " + this.typeCellDistribution);
-		System.out.println("Row distribution: " + sortMap.getSortedFirstNElement(this.rowsDistribution, 20));
-		System.out.println("Columns distribution: " + sortMap.getSortedFirstNElement(this.columnsDistribution, 20));
-		System.out.println("Distinct columns number values: " + sortMap.getSortedFirstNElement(this.distinctColumnsValuesDistribution, 20));
+		System.out.println("Row distribution (ROWS, N.TAB): " + sortMap.getSortedFirstNElement(this.rowsDistribution, 20));
+		System.out.println("Columns distribution (COLUMNS, N.TAB): " + sortMap.getSortedFirstNElement(this.columnsDistribution, 20));
+		System.out.println("Distinct columns number values (TAB, DISTINCT): " + sortMap.getSortedFirstNElement(this.distinctColumnsValuesDistribution, 20));
 
 		System.out.println("Total Time Taken: " + (System.currentTimeMillis() - start) / 1000 + " secs");
 
@@ -163,8 +166,13 @@ public class Statistics {
 			});
 
 			// Distribuzione valori distinti (colonna, numero di valori distinti)
-			for (Integer s : mapIntValues.keySet()) {
+			for (Integer s : this.mapIntValues.keySet()) {
 				this.distinctColumnsValuesDistribution.put(s, this.mapIntValues.get(s).size());
+			}
+			
+			// Celle totali
+			for (String s : this.typeCellDistribution.keySet()) {
+				this.totalCells += this.typeCellDistribution.get(s);
 			}
 
 		} catch (JsonGenerationException e) {
