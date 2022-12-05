@@ -5,7 +5,7 @@ import unicodedata
 
 
 class CompaniesMarketCapSpider(scrapy.Spider):
-    name = 'companiesMarketCapSpider'
+    name = 'market_cap'
     start_urls = ['https://companiesmarketcap.com/']
 
     def parse(self, response):
