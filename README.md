@@ -1,2 +1,2 @@
-# Ingegneria dei Dati - Progetto finale
+# Ingegneria dei Dati - Progetto finale
 
