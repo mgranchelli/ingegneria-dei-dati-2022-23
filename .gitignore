@@ -1,0 +1,11 @@
+data/
+datasets/
+datasets_*/
+datasets_zip/*
+
+*.ipynb
+
+!1. SchemaAlignment.ipynb
+
+*.txt
+*.pdf
