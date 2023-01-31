@@ -12,12 +12,13 @@
         "pricecap",
         "gbp"
     ],
-    "industry": [
+    "sector": [
         "categories",
         "area of activity",
         "category",
         "company_business",
-        "company business"
+        "company business",
+        "industry"
     ],
     "country": [
         "locations",
