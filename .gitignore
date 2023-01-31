@@ -1,7 +1,7 @@
-data/
-datasets/
-datasets_*/
-datasets_zip/*
+src/*
+src/datasets_zip/*
+!src/datasets_zip
+!src/datasets_zip/*.zip
 
 *.ipynb
 

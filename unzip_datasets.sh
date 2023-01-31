@@ -1,7 +1,7 @@
 #!/bin/bash
 
 FILES_NAME=files_name.txt
-DATASETS="./datasets"
+DATASETS="./src/datasets"
 TEMP="temp"
 
 if [ -f "$FILES_NAME" ]; then
@@ -23,7 +23,7 @@ touch $FILES_NAME
 j=0
 
 # for folder files zip
-for entry in "./datasets_zip"/*; do
+for entry in "./src/datasets_zip"/*; do
     nome_file=$(basename $entry)
 
     # check file zip
