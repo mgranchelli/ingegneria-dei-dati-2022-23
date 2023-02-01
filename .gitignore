@@ -5,6 +5,6 @@ src/datasets_zip/*
 
 !final_dataset.csv
 !1. SchemaAlignment.ipynb
-!2 RecordLinkage.ipynb
+!2. RecordLinkage.ipynb
 *.txt
 *.pdf
