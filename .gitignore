@@ -5,7 +5,6 @@ src/datasets_zip/*
 
 !final_dataset.csv
 
-*.ipynb
 
 !1. SchemaAlignment.ipynb
 
