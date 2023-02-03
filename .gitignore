@@ -1,5 +1,6 @@
 src/*
 src/datasets_zip/*
+.ipynb_checkpoints/*
 !src/datasets_zip
 !src/datasets_zip/*.zip
 
