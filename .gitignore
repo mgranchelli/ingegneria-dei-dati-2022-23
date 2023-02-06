@@ -1,3 +1,4 @@
+src/candidate_pairs.csv
 src/datasets_zip/*
 .ipynb_checkpoints/*
 !src/datasets_zip
