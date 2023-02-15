@@ -7,7 +7,9 @@ src/datasets_*
 !src/datasets_zip
 !src/datasets_zip/*.zip
 
+*.csv
 !final_dataset.csv
+!new_dataset.csv
 
 *.ipynb
 !1. SchemaAlignment.ipynb
@@ -15,4 +17,3 @@ src/datasets_*
 
 *.txt
 *.pdf
-*.csv
