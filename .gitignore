@@ -8,8 +8,8 @@ src/datasets_*
 !src/datasets_zip/*.zip
 
 *.csv
-!linked_dataset.csv
-!aligned_dataset.csv
+!1. aligned_dataset.csv
+!2. linked_dataset.csv
 
 *.ipynb
 !1. SchemaAlignment.ipynb
