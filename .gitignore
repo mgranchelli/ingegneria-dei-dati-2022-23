@@ -11,9 +11,9 @@ src/datasets_*
 !linked_dataset.csv
 !aligned_dataset.csv
 
-!1. SchemaAlignment.ipynb
-!2. RecordLinkage*.ipynb
-
 *.ipynb
+!1. SchemaAlignment.ipynb
+!2. RecordLinkage.ipynb
+
 *.txt
 *.pdf
