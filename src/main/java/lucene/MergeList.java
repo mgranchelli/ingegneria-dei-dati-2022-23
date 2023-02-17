@@ -10,9 +10,13 @@ import java.util.Map;
 import java.util.Set;
 
 import org.apache.lucene.analysis.TokenStream;
+import org.apache.lucene.analysis.standard.StandardAnalyzer;
 import org.apache.lucene.analysis.tokenattributes.CharTermAttribute;
 import org.apache.lucene.index.Term;
+import org.apache.lucene.queryparser.classic.ParseException;
+import org.apache.lucene.queryparser.classic.QueryParser;
 import org.apache.lucene.search.IndexSearcher;
+import org.apache.lucene.search.Query;
 import org.apache.lucene.search.ScoreDoc;
 import org.apache.lucene.search.TermQuery;
 import org.apache.lucene.search.TopDocs;
@@ -25,6 +29,25 @@ public class MergeList {
 	
 	public MergeList(IndexSearcher searcher) {
 		this.searcher = searcher;
+	}
+	
+	public Integer searchAzienda(String aziendaName) throws IOException, ParseException {
+		// long start = System.currentTimeMillis();
+		
+		QueryParser parser = new QueryParser("tableContent", new StandardAnalyzer());
+        Query query = parser.parse(aziendaName.toLowerCase().toString());
+        TopDocs hits = searcher.search(query, 2000000);
+        
+        System.out.println("Totale dei documenti trovati: " + hits.scoreDocs.length);
+        
+        if (hits.scoreDocs.length != 0) {
+        	System.out.println("Il documento [" + hits.scoreDocs[0].doc + "] ha score più alta!");
+        	// System.out.println("Total Time Taken : " + (System.currentTimeMillis() - start) + " ms\n");
+        	return hits.scoreDocs[0].doc;
+        }
+        else {
+        	return null;
+        }  
 	}
 	
 	public void run(String inputString, int K) throws IOException {

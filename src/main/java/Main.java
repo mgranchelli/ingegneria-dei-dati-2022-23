@@ -1,17 +1,22 @@
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.util.List;
 
 import org.apache.lucene.index.IndexNotFoundException;
+import org.apache.lucene.queryparser.classic.ParseException;
 
+import csv.CSVReader;
+import csv.CSVWriter;
 import lucene.IndexLoader;
 import lucene.Indexer;
 import lucene.MergeList;
+import models.AziendaRecord;
 import statistics.Statistics;
 
 public class Main {
 
-	public static void main(String[] args) throws IOException {
+	public static void main(String[] args) throws IOException, ParseException {
 
 		menu();
 
@@ -48,7 +53,7 @@ public class Main {
 			} else if (str.equals("4")) {
 
 				if (indexLoader == null) {
-					
+
 					try {
 						System.out.println("Optimizing index...");
 						indexLoader = new IndexLoader();
@@ -77,8 +82,44 @@ public class Main {
 				}
 
 				menu();
-			}
-			else {
+
+			} else if (str.equals("5")) {
+				
+				if (indexLoader == null) {
+					try {
+						System.out.println("Optimizing index...");
+						indexLoader = new IndexLoader();
+					} catch (IndexNotFoundException e) {
+						System.out.println("\nFirst create index!");
+					}
+				}
+				
+				if (indexLoader != null) {
+					
+					long start = System.currentTimeMillis();
+					
+					CSVReader csv = new CSVReader();
+					List<AziendaRecord> aziende = csv.readAziende("./inputFile/2. linked_dataset.csv");
+					
+					MergeList ml = new MergeList(indexLoader.getIndexSearcher());
+					for (AziendaRecord azienda : aziende) {
+						Integer idLinkDB = ml.searchAzienda(azienda.getName()); 
+						azienda.setIdDocDB(idLinkDB);
+//						System.out.println(azienda.toString());
+					}
+					
+					CSVWriter w = new CSVWriter("./outputFile/3. integrated_dataset.csv", csv.headerCSV);
+					w.writeCSV(aziende);
+					
+					long end = System.currentTimeMillis();
+					System.out.println("Total Time Taken: " + (end - start) / 1000F + " seconds");
+				}	
+
+
+				System.out.println("\nTask completed!\n");
+				menu();
+
+			} else {
 				System.out.println("\nInvalid choice!");
 				menu();
 			}
@@ -96,6 +137,7 @@ public class Main {
 		System.out.println("2 - Statistics and charts");
 		System.out.println("3 - Indexing");
 		System.out.println("4 - MergeList - Top K overlap");
+		System.out.println("5 - Integration companies dataset");
 		System.out.println("-------------------------");
 	}
 
