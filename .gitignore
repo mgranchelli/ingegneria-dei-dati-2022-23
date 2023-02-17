@@ -8,3 +8,4 @@ outputCharts/
 .idea/
 
 !inputFile/tables_test.json
+!inputFile/2. linked_dataset.csv
