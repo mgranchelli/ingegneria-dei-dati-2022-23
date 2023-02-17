@@ -65,8 +65,8 @@
         "revenues 2018 $m",
         "annual_revenue_USD"
     ],
-    "links": [
-        "website",
+    "website": [
+        "links",
         "link",
         "company_website",
         "facebook",
