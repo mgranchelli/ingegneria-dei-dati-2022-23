@@ -8,6 +8,7 @@ src/datasets_*
 !src/datasets_zip/*.zip
 
 *.csv
+!final_matches_collapsed.csv
 !final_dataset.csv
 !new_dataset.csv
 
