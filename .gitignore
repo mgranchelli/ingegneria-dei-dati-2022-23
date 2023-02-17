@@ -11,7 +11,6 @@ src/datasets_*
 !final_dataset.csv
 !new_dataset.csv
 
-*.ipynb
 !1. SchemaAlignment.ipynb
 !2. RecordLinkage.ipynb
 
