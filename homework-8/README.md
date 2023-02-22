@@ -7,4 +7,4 @@ L'obiettivo dell'homework è quello di integrare le sorgenti dati collezionate d
 3. Calcolare il Record linkage.
     - è stato utilizzato [Python Record Linkage Toolkit](https://recordlinkage.readthedocs.io/en/latest/) ed è presente all'interno del notebook: [2. RecordLinkage.ipynb](./2.%20RecordLinkage.ipynb)
 4. Arricchire i dati integrati usando le tecniche (e il dataset di tabelle) sviluppate nell'homework 3.
-    - presente all'interno del repo del l'[Homework 3](https://github.com/mgranchelli/IngDati-Homework-3).
+    - presente all'interno del repo del l'[Homework 3](../homework-3/).
