@@ -1,0 +1,7 @@
+target/
+inputFiles/
+inputFilesTest/
+
+.project
+.classpath
+.settings/
