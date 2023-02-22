@@ -19,7 +19,28 @@ outputCharts/
 report/
 *.json
 
-# Homework 4
+# Homework 5
 __pycache__/
 *.csv
 *.ipynb
+
+# Homework 8
+src/candidate_pairs.csv
+src/datasets_zip/*
+.ipynb_checkpoints/*
+
+src/data
+src/datasets_*
+!src/datasets_zip
+!src/datasets_zip/*.zip
+
+*.csv
+!1. aligned_dataset.csv
+!2. linked_dataset.csv
+
+*.ipynb
+!1. SchemaAlignment.ipynb
+!2. RecordLinkage.ipynb
+
+*.txt
+*.pdf

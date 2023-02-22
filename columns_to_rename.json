@@ -1,0 +1,80 @@
+{
+    "name": [
+        "brand name",
+        "company"
+    ],
+    "marketcap": [
+        "market_cap",
+        "master cap",
+        "mastercap",
+        "market_capitalization_2022",
+        "market_capitalization_usd",
+        "pricecap",
+        "gbp"
+    ],
+    "sector": [
+        "categories",
+        "area of activity",
+        "category",
+        "company_business",
+        "company business",
+        "industry"
+    ],
+    "country": [
+        "locations",
+        "location",
+        "headquarter",
+        "headquarters_country",
+        "headquarters country",
+        "headquarters",
+        "office address",
+        "address"
+    ],
+    "founded": [
+        "founded_year",
+        "founding_year",
+        "founding year",
+        "foundation year",
+        "founded year",
+        "est_of_ownership"
+    ],
+    "ceo": [
+    ],
+    "employees": [
+        "size",
+        "number of employees",
+        "number_of_employees",
+        "employees_number",
+        "employees_2022",
+        "number of employees 2020",
+        "employees_number_2020",
+        "employees_2020",
+        "number_of_employees_2020"
+    ],
+    "revenue": [
+        "annual_revenue_in_usd",
+        "annual_revenue_usd",
+        "annual revenue in usd",
+        "revenue_2022",
+        "revenue 2020 (€)",
+        "revenue_2020_eu",
+        "revenue_2020",
+        "revenue_2020_euro",
+        "sales",
+        "assets",
+        "revenues 2018 $m",
+        "annual_revenue_USD"
+    ],
+    "website": [
+        "links",
+        "link",
+        "company_website",
+        "facebook",
+        "twitter",
+        "instagram",
+        "pinterest",
+        "twitter_page_url",
+        "wikipedia_page_url",
+        "facebook_page_url"
+    ]
+}
