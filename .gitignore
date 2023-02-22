@@ -19,3 +19,7 @@ outputCharts/
 report/
 *.json
 
+# Homework 4
+__pycache__/
+*.csv
+*.ipynb
