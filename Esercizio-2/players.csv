@@ -1,0 +1,26 @@
+Nome,Data di nascita,Altezza,Peso,Posizione,Nazionalità,Squadra,Numero di maglia
+Sandro Tonali,08/mag/2000,"1,81 m",None,Mediano,Italia,Milan,8
+Guglielmo Vicario,07/ott/1996,"1,94 m",None,Portiere,Italia,Empoli,13
+Victor Osimhen,29/dic/1998,"1,86 m",None,Punta centrale,Nigeria,Napoli,9
+Ángel Di María,14/feb/1988,"1,80 m",None,Ala destra,"['Argentina', 'Italia']",Juventus,22
+Ademola Lookman,20/ott/1997,"1,74 m",None,Ala sinistra,"['Nigeria', 'Inghilterra']",Atalanta,11
+Sandro Tonali,2000-05-08,181cm,78kg,MF (DM),Italy,Milan,None
+Guglielmo Vicario,1996-10-07,194cm,87kg,GK,Italy,Empoli,None
+Victor Osimhen,1998-12-29,185cm,76kg,FW,Nigeria,Napoli,None
+Ángel Di María,1988-02-14,180cm,69kg,FW-MF (AM-CM-WM),Argentina,Juventus,None
+Ademola Lookman,1997-10-20,174cm,69kg,FW-MF (AM),"['Nigeria', 'England']",Atalanta,None
+TONALI SANDRO,08/05/2000,181,79,CENTROCAMPISTA,Italia,A.C. MILAN,None
+VICARIO GUGLIELMO,07/10/1996,194,78,PORTIERE,Italia,F.C. EMPOLI,None
+OSIMHEN VICTOR,29/12/1998,186,75,ATTACCANTE,Nigeria,S.S.C. NAPOLI,None
+DI MARIA ANGEL FABIAN,14/02/1988,180,75,CENTROCAMPISTA,Argentina,F.C. JUVENTUS,None
+LOOKMAN ADEMOLA,20/10/1997,174,71,ATTACCANTE,Nigeria,ATALANTA B. C.,None
+Sandro Tonali,08/05/00,181cm,79kg,Centrocampista,Italia,AC Milan,8
+Guglielmo Vicario,07/10/96,194cm,83kg,Portiere,Italia,Empoli FC,13
+Victor Osimhen,29/12/98,185cm,78kg,Attaccante,Nigeria,SSC Napoli,9
+Á. Di María,14/02/88,180cm,75kg,Centrocampista,Argentina,Juventus FC,22
+Ademola Lookman,20/10/97,174cm,71kg,Centrocampista,Nigeria,Atalanta Bergamasca Calcio,11
+Sandro Tonali,8 maggio 2000,181 cm,80 kg,Centrocampista,Italia,Milan,None
+Guglielmo Vicario,7 ottobre 1996,194 cm,83 kg,Portiere,Italia,Empoli,None
+Victor James Osimhen,29 dicembre 1998,186 cm,78 kg,Attaccante,Nigeria,Napoli,None
+Ángel Fabián Di María Hernández,14 febbraio 1988,180 cm,68 kg,"['Centrocampista', 'attaccante']",Argentina,Juventus,None
+Ademola Olajade Lookman,20 ottobre 1997,174 cm,78 kg,Attaccante,"['Inghilterra', 'Nigeria']",Atalanta,None

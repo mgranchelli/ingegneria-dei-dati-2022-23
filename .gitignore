@@ -1,3 +1,4 @@
+# Homework 2
 target/
 inputFiles/
 inputFilesTest/
@@ -5,11 +6,16 @@ inputFilesTest/
 .project
 .classpath
 .settings/
+.idea/
 
 inputFile/*
 outputCharts/
 
-.idea/
-
+# Homework 3
 !inputFile/tables_test.json
 !inputFile/2. linked_dataset.csv
+
+# Homework 4
+report/
+*.json
+
